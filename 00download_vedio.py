@@ -29,32 +29,33 @@ for url in url_list:
             #print(vid)
 
             # 使用视频解析接口，只需传入vid
-            url = 'http://vv.video.qq.com/getinfo?vids={}&platform=101001&charge=0&otype=json'.format(vid)
-            doc2 = pq(url)
+            url2 = 'http://vv.video.qq.com/getinfo?vids={}&platform=101001&charge=0&otype=json'.format(vid)
+            doc2 = pq(url2)
             # print(type(doc2.html()))
             # print(doc2.html())
             # 处理数据
             result = doc2.html().replace('QZOutputJson=', '').replace(';', '')
             # print(result,type(result))
             result = json.loads(result)
-            print(result)
+            #print(result)
             try:
                 for i in result['vl']['vi']:
                     vkey = i['fvkey']
                     title = i['ti']
                     fn = i['fn']
-                    url2 = i['ul']['ui'][2]['url']
+                    url3 = i['ul']['ui'][2]['url']
                     print(title)
 
             except:
                 pass
 
-            finally:
-                url3 = url2 + fn + '?vkey=' + vkey
-                headers = {
-                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
-                res=requests.get(url3,stream=True,headers=headers)
-                #print(res.content)
-                with open('{0}/{1}.mp4'.format('file', 'title'), 'ab') as f:
-                    f.write(res.content)
-                    f.flush()
+            # finally:
+            #     url4 = url3 + fn + '?vkey=' + vkey
+            #     headers = {
+            #         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
+            #     res=requests.get(url4,stream=True,headers=headers)
+            #     #print(res.content)
+            #     with open('{0}/{1}.mp4'.format('file', 'title'), 'ab') as f:
+            #         f.write(res.content)
+            #         f.flush()
+

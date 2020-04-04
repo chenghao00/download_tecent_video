@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>视频批量下载器</title>
+</head>
+<body>
+
+<form method='post' action="{% url 'download_video:download' %}">
+    {% csrf_token %}
+    <input type="text" name="key_name" > <br>
+    <input type="text" name="file_path" >
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
